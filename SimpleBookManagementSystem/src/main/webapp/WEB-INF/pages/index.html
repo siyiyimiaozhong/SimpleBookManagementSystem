@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="#" />
+    <link type="text/css" rel="styleSheet"  href="css/index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账号登录</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html,
+        body {
+            height: 100%;
+        }
+
+        @font-face {
+            font-family: 'neo';
+            src: url("font/NEOTERICc.ttf");
+        }
+        input:focus{
+			outline: none;
+		}
+		.form input{
+			width: 300px;
+			height: 30px;
+			font-size: 18px;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            margin-bottom: 20px;
+		}
+        .form input::placeholder{
+            color: rgba(255,255,255,0.8);
+            font-size: 18px;
+            font-family: "neo";
+        }
+        .form select{
+            width: 300px;
+            height: 30px;
+            font-size: 18px;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .form select::placeholder{
+            color: rgba(255,255,255,0.8);
+            font-size: 18px;
+            font-family: "neo";
+        }
+        .confirm{
+            height: 0;
+            overflow: hidden;
+            transition: .25s;
+        }
+		.btn{
+			width:140px;
+			height: 40px;
+			border: 1px solid #fff;
+            background: none;
+			font-size:20px;
+			color: #fff;
+            cursor: pointer;
+            margin-top: 25px;
+            font-family: "neo";
+            transition: .25s;
+		}
+        .btn:hover{
+            background: rgba(255,255,255,.25);
+        }
+        #login_wrap{
+            width: 980px;
+            min-height: 500px;
+            border-radius: 10px;
+            font-family: "neo";
+            overflow: hidden;
+            box-shadow: 0px 0px 120px rgba(0, 0, 0, 0.25);
+            position: fixed;
+            top: 50%;
+            right: 50%;
+            margin-top: -250px;
+            margin-right: -490px;
+            opacity: 0.9;
+        }
+        #login{
+            width: 50%;
+            height: 100%;
+            min-height: 500px;
+            background: linear-gradient(45deg, #9a444e, #e06267);
+            position: relative;
+            float: right;
+        }
+        #login #status{
+            width: 90px;
+            height: 35px;
+            margin: 40px auto;
+            color: #fff;
+            font-size: 30px;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        #login #status i{
+            font-style: normal;
+            position: absolute;
+            transition: .5s
+        }
+        #login span{
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            margin-left: -150px;
+            top: 52%;
+            margin-top: -140px;
+        }
+        #bg{
+            background: url("images/bg.jpg") no-repeat center fixed;
+            height: 100%;
+            width: 100%;
+            background-size:cover;
+        }
+        /*绘图*/
+        #login_img{
+            width: 50%;
+            min-height: 500px;
+            background: linear-gradient(45deg, #df5555, #ef907a);
+            float: left;
+            position: relative;
+        }
+        #login_img img{
+            position: absolute;
+            display: block;
+        }
+        #login_img .circle{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #df5555, #ef907a);
+            top: 70px;
+            left: 50%;
+            margin-left: -100px;
+            overflow: hidden;
+        }
+        #login_img .circle span{
+            width: 150px;
+            height: 40px;
+            border-radius: 50px;
+            position: absolute;
+        }
+        #login_img .circle span:nth-child(1){
+            top: 30px;
+            left: -38px;
+            background: #c55c59;
+        }
+        #login_img .circle span:nth-child(2){
+            bottom: 20px;
+            right: -35px;
+            background: #934555;
+        }
+        #login_img p{
+            text-align: center;
+            color: black;
+            font-weight: 600;
+            margin-top: 365px;
+            font-size: 25px;
+        }
+        #login_img p i{
+            font-style: normal;
+            margin-right: 45px;
+        }
+        #login_img p i:nth-last-child(1){
+            margin-right: 0;
+        }
+        /*提示*/
+        #hint{
+            width: 100%;
+            line-height: 70px;
+            background: linear-gradient(-90deg, #9b494d, #bf5853);
+            text-align: center;
+            font-size: 25px;
+            color: #fff;
+            box-shadow: 0 0 20px #733544;
+            display: none;
+            opacity: 0;
+            transition: .5s;
+            position: absolute;
+            top: 0;
+            z-index: 999;
+        }
+        /* 响应式 */
+        @media screen and (max-width:1000px ) {
+            #login_img{
+                display: none;
+            }
+            #login_wrap{
+                width: 490px;
+                margin-right: -245px;
+            }
+            #login{
+                width: 100%;
+
+            }
+        }
+        @media screen and (max-width:560px ) {
+            #login_wrap{
+                width: 330px;
+                margin-right: -165px;
+            }
+            #login span{
+                margin-left: -125px;
+            }
+            .form input{
+                width: 250px;
+            }
+            .form select{
+                width: 250px;
+            }
+            .btn{
+                width: 113px;
+            }
+        }
+        @media screen and (max-width:345px ) {
+            #login_wrap {
+                width: 290px;
+                margin-right: -145px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="bg">
+        <div id="hint"><!-- 提示框 -->
+            <p>登录失败</p>
+        </div>
+        <div id="login_wrap">
+            <div id="login"><!-- 登录注册切换动画 -->
+                <div id="status">
+                    <i style="top: 0">Log</i>
+                    <i style="right: 5px">in</i>
+                </div>
+                <span id="login_span">
+                    <form action="post">
+                        <p class="form"><input type="text" id="user" name="username" placeholder="用户名"></p>
+                        <p class="form confirm"><input type="text" id="realname" placeholder="真实姓名"></p>
+                        <p class="form confirm">
+                            <select placeholder="性别" id="sex">
+                                <option style="background: #9a444e">男</option>
+                                <option style="background: #9a444e">女</option>
+                            </select>
+                        </p>
+                        <p class="form confirm"><input id="birth" type="date" placeholder="出生日期"></p>
+                        <p class="form confirm"><input id="phone" type="text" placeholder="电话号码"></p>
+                        <p class="form confirm"><input id="address" type="text" placeholder="地址"></p>
+                        <p class="form"><input type="password" id="passwd" placeholder="密码"></p>
+                        <p class="form confirm"><input type="password" id="confirm-passwd" placeholder="验证密码"></p>
+                        <input type="button" value="Log in" class="btn" onclick="login()" style="margin-right: 20px;">
+                        <input type="button" value="Sign in" class="btn" onclick='signin()' id="btn">
+                    </form>
+                </span>
+            </div>
+
+            <div id="login_img"><!-- 图片绘制框 -->
+                <img class="circle" src="images/tx.jpg">
+
+                </img>
+                <span class="fly_star">
+                    <span></span>
+                    <span></span>
+                </span>
+                <p id="title">图书管理系统</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="layer/layer.js"></script>
+<script>
+    var onoff = true//根据此布尔值判断当前为注册状态还是登录状态
+    var confirm = document.getElementsByClassName("confirm");
+
+    //自动居中title
+    var name_c = document.getElementById("title")
+    name = name_c.innerHTML.split("")
+    name_c.innerHTML = ""
+    for (i = 0; i < name.length; i++)
+        if (name[i] != ",")
+            name_c.innerHTML += "<i>" + name[i] + "</i>"
+
+    //注册按钮
+    function signin() {
+        let status = document.getElementById("status");
+        let login_span = document.getElementById("login_span");
+        let hit = document.getElementById("hint").getElementsByTagName("p")[0];
+        if (onoff) {
+            for(var i=0;i<confirm.length;i++){
+                confirm[i].style.height = 50 + "px";
+            }
+            status.style.display="none";
+            login_span.style.top="32%";
+            onoff = !onoff
+        } else {
+            var reg = /^[0-9a-zA-Z]{3,15}$/;//4-16字节，允许字母数字下划线
+            var username = $("#user").val();
+            if (username == "") {
+                layer.msg("用户名不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            } else if (!reg.test(username)) {
+                layer.msg("用户名只包含数字和字母,请重新输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var realname=$("#realname").val();
+            if(realname == ""){
+                layer.msg("真实姓名不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var sex=$("#sex option:selected").val();
+            var birth=$("#birth").val();
+            if(password == ""){
+                layer.msg("出生日期不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var phone=$("#phone").val();
+            if(password == ""){
+                layer.msg("手机号码不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var address=$("#address").val();
+            if(password == ""){
+                layer.msg("地址不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var password = $("#passwd").val();
+            if(password == ""){
+                layer.msg("登录密码不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var confirm_passwd = $("#confirm-passwd").val();
+            if(confirm_passwd != password){
+                layer.msg("两次输入的密码不同，请重新输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var loadingIndex=null;
+            $.ajax({
+                type:"post",
+                url:"reader/addReader",
+                data:{
+                    "username":username,
+                    "name":realname,
+                    "sex":sex,
+                    "birth":birth,
+                    "phone":phone,
+                    "address":address,
+                    "password":password
+                },
+                beforeSend:function(){
+                    loadingIndex = layer.msg('处理中', {icon: 16});
+                },
+                success:function(result){
+                    layer.close(loadingIndex);
+                    if(result.success){
+                        layer.msg("注册成功", {time:2000, icon:1, shift:1}, function(){
+                        });
+                        window.location.href="index";
+                    }else{
+                        layer.msg("注册失败，请重试", {time:2000, icon:2, shift:6}, function(){
+                        });
+                    }
+                }
+            })
+        }
+    }
+
+    //登录按钮
+    function login() {
+        if (onoff) {
+            var reg = /^[0-9a-zA-Z]{3,15}$/;//4-16字节，允许字母数字下划线
+            var username = $("#user").val();
+            if (username == "") {
+                layer.msg("用户名不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            } else if (!reg.test(username)) {
+                layer.msg("用户名只包含数字和字母,请重新输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var password = $("#passwd").val();
+            if(password == ""){
+                layer.msg("登录密码不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+                });
+                return false;
+            }
+            var loadingIndex=null;
+            $.ajax({
+                type:"post",
+                url:"login",
+                data:{
+                    "username":username,
+                    "password":password
+                },
+                beforeSend:function(){
+                    loadingIndex = layer.msg('处理中', {icon: 16});
+                },
+                success:function(result){
+                    layer.close(loadingIndex);
+                    if(result.success){
+                        if(result.data=="admin"){
+                            window.location.href="admin/index";
+                        }else{
+                            window.location.href="reader/index";
+                        }
+                    }else{
+                        layer.msg("用户登录账号或密码不正确，请重新输入", {time:2000, icon:2, shift:6}, function(){
+                        });
+                    }
+                }
+            })
+        } else {
+            let status = document.getElementById("status");
+            let login_span = document.getElementById("login_span");
+            let hit = document.getElementById("hint").getElementsByTagName("p")[0];
+            for(var i=0;i<confirm.length;i++){
+                confirm[i].style.height = 0;
+            }
+            status.style.display="";
+            login_span.style.top="52%";
+            onoff = !onoff
+        }
+    }
+
+</script>
+</html>
