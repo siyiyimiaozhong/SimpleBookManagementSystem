@@ -2,12 +2,16 @@
 <html>
 
 <head>
+    <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>读者管理</title>
-    <meta name="description" content="读者管理">
-    <meta name="keywords" content="读者管理">
+
+
+
+    <title>新增读者</title>
+    <meta name="description" content="新增读者">
+    <meta name="keywords" content="新增读者">
 
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
 
@@ -411,131 +415,67 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                全部读者
+                新增读者
                 <small>读者管理</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
                 <li><a href="#">读者管理</a></li>
-                <li class="active">全部读者</li>
+                <li class="active">新增读者</li>
             </ol>
         </section>
         <!-- 内容头部 /-->
 
         <!-- 正文区域 -->
         <section class="content">
-
-            <!-- .box-body -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">列表</h3>
-                </div>
-
-                <div class="box-body">
-                    <!-- 数据表格 -->
-                    <div class="table-box">
-                        <!--工具栏-->
-                        <div class="pull-left">
-                            <div class="form-group form-inline">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default" title="新建" onclick="addReader()"><i class="fa fa-file-o"></i> 新建</button>
-                                    <button type="button" class="btn btn-default" title="删除" onclick="deleteReadersByIds()"><i class="fa fa-trash-o"></i> 删除</button>
-                                    <button type="button" class="btn btn-default" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
+            <div class="box-body">
+                <!--tab页-->
+                <div class="nav-tabs-custom">
+                    <!--tab内容-->
+                    <div class="tab-content">
+                        <!--基础控件-->
+                        <div class="tab-pane active" id="tab-common">
+                            <div class="row data-type">
+                                <div class="col-md-2 title">用户名</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="用户名" value="" id="username">
+                                </div>
+                                <div class="col-md-2 title">姓名</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="姓名" value="" id="name">
+                                </div>
+                                <div class="col-md-2 title">性别</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="性别" value="" id="sex">
+                                </div>
+                                <div class="col-md-2 title">出生日期</div>
+                                <div class="col-md-4 data">
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 title">地址</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="地址" value="" id="address">
+                                </div>
+                                <div class="col-md-2 title">电话</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="电话" value="" id="phone">
+                                </div>
+                                <div class="col-md-2 title"></div>
+                                <div class="col-md-10 data text-center">
+                                    <button type="button" class="btn bg-maroon" onclick="submit()">保存</button>
+                                    <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control input-sm" placeholder="搜索" id="search">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </div>
-                        <!--工具栏/-->
-
-                        <!--数据列表-->
-                        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
-                            <thead>
-                            <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
-
-                                <th class="text-center">ReaderID</th>
-                                <th class="text-center">用户名</th>
-                                <th class="text-center">密码</th>
-                                <th class="text-center">姓名</th>
-                                <th class="text-center">性别</th>
-                                <th class="text-center">生日</th>
-                                <th class="text-center">地址</th>
-                                <th class="text-center">电话</th>
-                                <th class="text-center">借阅次数</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-center">操作</th>
-                            </tr>
-                            </thead>
-                            <tbody id="reader_tbody">
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">开启</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                    <button type="button" class="btn bg-olive btn-xs">删除</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <!--数据列表/-->
-                        <!--工具栏-->
-                        <div class="pull-left">
-                            <div class="form-group form-inline">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default" title="新建" onclick="addReader()"><i class="fa fa-file-o"></i> 新建</button>
-                                    <button type="button" class="btn btn-default" title="删除" onclick="deleteReadersByIds()"><i class="fa fa-trash-o"></i> 删除</button>
-                                    <button type="button" class="btn btn-default" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
-                                </div>
-                            </div>
-                        </div>
+                        <!--基础控件/-->
                     </div>
-                    <!-- 数据表格 /-->
+                    <!--tab内容/-->
                 </div>
-                <!-- /.box-body -->
-                <!-- .box-footer-->
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <div class="form-group form-inline">
-                            总共<span id="pageTotal">2</span> 页，共<span id="total">14</span> 条数据。
-                        </div>
-                    </div>
-
-                    <div class="box-tools pull-right">
-                        <ul class="pagination" id="page">
-                            <li>
-                                <a href="#" aria-label="Previous">首页</a>
-                            </li>
-                            <li><a href="#">上一页</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">下一页</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /.box-footer-->
             </div>
         </section>
         <!-- 正文区域 /-->
@@ -591,13 +531,14 @@
 <script src="layer/layer.js"></script>
 <script>
     $(document).ready(function() {
-        // 选择框
-        $(".select2").select2();
-        // WYSIHTML5编辑器
-        $(".textarea").wysihtml5({
-            locale: 'zh-CN'
+        //Date picker
+        $('#datepicker').datepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            language: 'zh-CN'
         });
     });
+
 
     // 设置激活菜单
     function setSidebarActive(tagUri) {
@@ -610,22 +551,7 @@
 
     $(document).ready(function() {
         // 激活导航位置
-        setSidebarActive("all-reader");
-        // 列表按钮 
-        $("#dataList td input[type='checkbox']").iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            increaseArea: '20%'
-        });
-        // 全选操作 
-        $("#selall").click(function() {
-            var clicks = $(this).is(':checked');
-            if (!clicks) {
-                $("#dataList td input[type='checkbox']").iCheck("uncheck");
-            } else {
-                $("#dataList td input[type='checkbox']").iCheck("check");
-            }
-            $(this).data("clicks", !clicks);
-        });
+        setSidebarActive("admin-dataform");
     });
 
     function formatDate(time) {
@@ -634,30 +560,87 @@
         return t;
     }
 
-    function updateReader(id) {
-        window.location.href="adminReader?id="+id;
+    function getQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
     }
 
-    function addReader() {
-        window.location.href="adminReader";
-    }
-
-    //回车事件绑定
-    $('#search').bind('keypress', function(event) {
-        if (event.keyCode == "13") {
-            event.preventDefault();
-            //回车执行查询
-            var search=$("#search").val();
-            fun(1,10,search);
+    function submit(){
+        var add="reader/addReader";
+        var update="reader/updateReader?readerId="+getQueryString("id");
+        var username=$("#username").val();
+        if(username == ""){
+            layer.msg("用户名不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
         }
-    });
+        var name=$("#name").val();
+        if(name == ""){
+            layer.msg("真实姓名不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var sex=$("#sex").val();
+        if(sex == ""){
+            layer.msg("性别不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var birth=$("#datepicker").val();
+        if(birth == ""){
+            layer.msg("ISBN不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var address=$("#address").val();
+        if(address == ""){
+            layer.msg("价格不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var phone=$("#phone").val();
+        if(phone == ""){
+            layer.msg("数量不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var loadingIndex=null;
+        $.ajax({
+            type:"post",
+            url: getQueryString("id")?update:add,
+            data:{
+                "username": username,
+                "name": name,
+                "sex": sex,
+                "birth": birth,
+                "address": address,
+                "phone": phone
+            },
+            beforeSend:function(){
+                loadingIndex = layer.msg('处理中', {icon: 16});
+            },
+            success:function(result) {
+                layer.close(loadingIndex);
+                if(result.success){
+                    layer.msg("操作成功", {time:2000, icon:1, shift:1}, function(){
+                    });
+                    window.location.href="adminAllReader";
+                }else{
+                    layer.msg("操作失败，请重试", {time:2000, icon:2, shift:6}, function(){
+                    });
+                }
+            }
+        })
+    }
 
-    function deleteReader(id) {
-        layer.confirm('你确定要删除吗?', {icon: 3, title:'提示'}, function(index){
-            var loadingIndex =null;
+    $(function () {
+        var id=getQueryString("id");
+        if(id && id!=""){
+            var loadingIndex = null;
             $.ajax({
                 type:"post",
-                url: "reader/deleteReader",
+                url:"reader/findReaderById",
                 data:{
                     "id":id
                 },
@@ -666,113 +649,16 @@
                 },
                 success:function(result) {
                     layer.close(loadingIndex);
-                    if(result.success){
-                        layer.msg("操作成功", {time:2000, icon:1, shift:1}, function(){
-                        });
-                        window.location.href="adminAllReader";
-                    }else{
-                        layer.msg("操作失败，请重试", {time:2000, icon:2, shift:6}, function(){
-                        });
-                    }
+                    $("#username").val(result.username);
+                    $("#name").val(result.name);
+                    $("#sex").val(result.sex);
+                    $("#datepicker").val(formatDate(result.birth));
+                    $("#address").val(result.address);
+                    $("#phone").val(result.phone);
                 }
-            });
-            layer.close(index);
-        });
-    }
-
-    function deleteReadersByIds() {
-        layer.confirm('你确定要删除吗?', {icon: 3, title:'提示'}, function(index){
-            var s='';
-            $('#reader_tbody input[name="ids"]:checked').each(function(){
-                s+=$(this).val()+',';
-            });
-            s = s.substr(0,s.length-1);
-            var loadingIndex=null;
-            $.ajax({
-                type:"post",
-                url: "reader/deleteReaders",
-                data:{
-                    "ids":s
-                },
-                beforeSend:function(){
-                    loadingIndex = layer.msg('处理中', {icon: 16});
-                },
-                success:function(result) {
-                    layer.close(loadingIndex);
-                    if(result.success){
-                        layer.msg("操作成功", {time:2000, icon:1, shift:1}, function(){
-                        });
-                        window.location.href="adminAllReader";
-                    }else{
-                        layer.msg("操作失败，请重试", {time:2000, icon:2, shift:6}, function(){
-                        });
-                    }
-                }
-            });
-            layer.close(index);
-        });
-    }
-
-    function fun(page,rows,key){
-        var loadingIndex = null;
-        $.ajax({
-            type:"post",
-            url:"reader/page",
-            data:{
-                "key": key,
-                "page": page,
-                "rows": rows
-            },
-            beforeSend:function(){
-                loadingIndex = layer.msg('处理中', {icon: 16});
-            },
-            success:function(result){
-                layer.close(loadingIndex);
-                var html="";
-                var readers=result.items;
-                var len=readers.length;
-                for(var i=0;i<len;i++){
-                    html+='<tr><td><input name="ids" type="checkbox" value="'+readers[i].readerId+'"></td>' +
-                        '<td class="text-center">'+readers[i].readerId+'</td>' +
-                        '<td class="text-center">'+readers[i].username+'</td>' +
-                        '<td class="text-center">'+readers[i].password+'</td>' +
-                        '<td class="text-center">'+readers[i].name+'</td>' +
-                        '<td class="text-center">'+readers[i].sex+'</td>' +
-                        '<td class="text-center">'+formatDate(readers[i].birth)+'</td>' +
-                        '<td class="text-center">'+readers[i].address+'</td>' +
-                        '<td class="text-center">'+readers[i].phone+'</td>' +
-                        '<td class="text-center">'+readers[i].borrowCount+'</td>' +
-                        '<td class="text-center">'+new Date(readers[i].createTime).toLocaleString()+'</td>' +
-                        '<td class="text-center">' +
-                        '<button type="button" class="btn bg-olive btn-xs" onclick="updateReader('+readers[i].readerId+')">编辑</button>\n' +
-                        '<button type="button" class="btn bg-olive btn-xs" onclick="deleteReader('+readers[i].readerId+')">删除</button></td></tr>'
-                }
-                $("#reader_tbody").html(html);
-                $("#pageTotal").html(result.totalPage);
-                $("#total").html(result.total);
-                var search=$("#search").val();
-                var totalPage=result.totalPage;
-                var s="";
-                s+='<li><a href="#" aria-label="Previous" onclick="fun('+1+','+rows+','+search+')">首页</a></li>';
-                s+='<li><a href="#" onclick="fun('+(page>1?page-1:1)+','+rows+','+search+')">上一页</a></li>';
-                var index=0;
-                if(page-2>0) index=page-2;
-                else index=1;
-                for(var i=0;i<5;i++){
-                    s+='<li><a href="#" onclick="fun('+(index+i)+','+rows+','+search+')">'+(i+index)+'</a></li>';
-                    if(index+i==totalPage) break;
-                }
-                s+='<li><a href="#" onclick="fun('+(page==totalPage?page:page+1)+','+rows+','+search+')">下一页</a></li>'
-                s+='<li><a href="#" aria-label="Next" onclick="fun('+totalPage+','+rows+','+search+')">尾页</a></li>'
-                $("#page").html(s);
-            }
-        })
-    }
-
-    $(function () {
-        fun(1,10);
-    });
-
+            })
+        }
+    })
 </script>
 </body>
 </html>

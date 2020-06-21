@@ -29,4 +29,14 @@ public class DispatcherController {
     public String adminBookTypeAdd(){
         return "admin_book_type_add.html";
     }
+
+    @RequestMapping("adminAllReader")
+    public String adminAllReader(){
+        return "admin_all_reader.html";
+    }
+
+    @RequestMapping("adminReader")
+    public String adminReader(){
+        return "admin_reader.html";
+    }
 }

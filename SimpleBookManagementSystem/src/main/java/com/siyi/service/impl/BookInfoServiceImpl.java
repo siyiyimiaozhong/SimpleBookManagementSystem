@@ -36,21 +36,34 @@ public class BookInfoServiceImpl implements BookInfoService {
             books = bookInfoDAO.findAll();
         }
         PageInfo<BookInfo> pageInfo = new PageInfo<BookInfo>(books);
-        int pageTotal = (int)pageInfo.getTotal()/rows;
-        if(pageInfo.getTotal()%rows!=0) pageTotal++;
-        return new PageResult<BookInfo>((int)pageInfo.getTotal(),pageTotal,books);
+        return new PageResult<BookInfo>((int)pageInfo.getTotal(),pageInfo.getPages(),books);
     }
 
+    /**
+     * 根据id查询图书
+     * @param id
+     * @return
+     */
     public BookInfo findBookById(Long id) {
         return bookInfoDAO.findBookById(id);
     }
 
+    /**
+     * 添加图书
+     * @param book
+     * @return
+     */
     public int addBook(BookInfo book) {
         book.setCreateTime(new Date());
         book.setNumber(book.getTotal());
         return bookInfoDAO.saveBookInfo(book);
     }
 
+    /**
+     * 修改图书
+     * @param book
+     * @return
+     */
     public int updateBook(BookInfo book) {
         BookInfo bookById = bookInfoDAO.findBookById(book.getBookId());
         long pos = book.getTotal() - bookById.getTotal();
@@ -59,10 +72,20 @@ public class BookInfoServiceImpl implements BookInfoService {
         return bookInfoDAO.updateBookInfoById(book);
     }
 
+    /**
+     * 根据id删除图书
+     * @param id
+     * @return
+     */
     public int deleteById(Long id) {
         return bookInfoDAO.deleteBookInfoById(id);
     }
 
+    /**
+     * 根据ids批量删除图书
+     * @param ids
+     * @return
+     */
     public boolean deleteByIdArray(String[] ids) {
         for (String id: ids) {
             int i = bookInfoDAO.deleteBookInfoById(Long.parseLong(id));

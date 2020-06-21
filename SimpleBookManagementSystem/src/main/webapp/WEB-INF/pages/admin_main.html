@@ -363,8 +363,8 @@
                     </a>
                     <ul class="treeview-menu">
 
-                        <li id="charts-chartjs">
-                            <a href="all-charts-chartjs.html">
+                        <li id="adminAllReader">
+                            <a href="adminAllReader">
                                 <i class="fa fa-circle-o"></i> 全部读者
                             </a>
                         </li>
@@ -598,6 +598,7 @@
             locale: 'zh-CN'
         });
     });
+
     // 设置激活菜单
     function setSidebarActive(tagUri) {
         var liObj = $("#" + tagUri);
@@ -628,6 +629,13 @@
             $(this).data("clicks", !clicks);
         });
     });
+
+    function formatDate(time) {
+        var date = new Date(time);
+        var t=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDay();
+        return t;
+    }
+
     //回车事件绑定
     $('#search').bind('keypress', function(event) {
         if (event.keyCode == "13") {
@@ -741,7 +749,7 @@
                             +'<td class="text-center">'+books[i].publish+'</td>'
                             +'<td class="text-center">'+books[i].type+'</td>'
                             +'<td class="text-center">'+books[i].price+'</td>'
-                            +'<td class="text-center">'+new Date(books[i].createTime).toLocaleString()+'</td>'
+                            +'<td class="text-center">'+formatDate(books[i].createTime)+'</td>'
                             +'<td class="text-center">'+books[i].number+'/'+books[i].total+'</td>'
                             +'<td class="text-center">'
                                 +'<button type="button" class="btn bg-olive btn-xs" onclick="book_update('+books[i].bookId+')">编辑</button>'
