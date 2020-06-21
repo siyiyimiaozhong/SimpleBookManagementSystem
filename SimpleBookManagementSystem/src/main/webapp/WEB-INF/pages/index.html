@@ -120,7 +120,7 @@
             margin-top: -140px;
         }
         #bg{
-            background: url("images/bg.jpg") no-repeat center fixed;
+            background: url("img/bg.jpg") no-repeat center fixed;
             height: 100%;
             width: 100%;
             background-size:cover;
@@ -268,7 +268,7 @@
             </div>
 
             <div id="login_img"><!-- 图片绘制框 -->
-                <img class="circle" src="images/tx.jpg">
+                <img class="circle" src="img/tx.jpg">
 
                 </img>
                 <span class="fly_star">
@@ -283,13 +283,13 @@
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="layer/layer.js"></script>
 <script>
-    var onoff = true//根据此布尔值判断当前为注册状态还是登录状态
+    var onoff = true;//根据此布尔值判断当前为注册状态还是登录状态
     var confirm = document.getElementsByClassName("confirm");
 
     //自动居中title
-    var name_c = document.getElementById("title")
-    name = name_c.innerHTML.split("")
-    name_c.innerHTML = ""
+    var name_c = document.getElementById("title");
+    name = name_c.innerHTML.split("");
+    name_c.innerHTML = "";
     for (i = 0; i < name.length; i++)
         if (name[i] != ",")
             name_c.innerHTML += "<i>" + name[i] + "</i>"
@@ -421,9 +421,9 @@
                     layer.close(loadingIndex);
                     if(result.success){
                         if(result.data=="admin"){
-                            window.location.href="admin/index";
+                            window.location.href="admin_main";
                         }else{
-                            window.location.href="reader/index";
+                            window.location.href="reader_main";
                         }
                     }else{
                         layer.msg("用户登录账号或密码不正确，请重新输入", {time:2000, icon:2, shift:6}, function(){

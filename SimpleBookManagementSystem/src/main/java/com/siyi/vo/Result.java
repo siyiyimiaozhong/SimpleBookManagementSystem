@@ -1,4 +1,4 @@
-package com.siyi.domain;
+package com.siyi.vo;
 
 import java.io.Serializable;
 

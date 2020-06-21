@@ -1,7 +1,7 @@
 package com.siyi.controller;
 
 import com.siyi.domain.ReaderInfo;
-import com.siyi.domain.Result;
+import com.siyi.vo.Result;
 import com.siyi.service.ReaderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

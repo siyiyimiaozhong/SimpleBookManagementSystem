@@ -29,6 +29,17 @@
         <property name="dataSource" ref="dataSource"/>
         <!--扫描pojo包-->
         <property name="typeAliasesPackage" value="com.siyi.domain"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect=mysql
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
     <!--扫描接口包路径，生成包下所有接口的代理对象，并且放入spring容器中-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

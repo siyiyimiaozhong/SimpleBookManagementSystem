@@ -2,7 +2,7 @@ package com.siyi.controller;
 
 import com.siyi.domain.Admin;
 import com.siyi.domain.ReaderInfo;
-import com.siyi.domain.Result;
+import com.siyi.vo.Result;
 import com.siyi.service.AdminService;
 import com.siyi.service.ReaderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +41,5 @@ public class LoginController {
         }
         System.out.println(result.getSuccess());
         return result;
-    }
-
-    @RequestMapping("index")
-    public String index(){
-        return "index.html";
     }
 }
