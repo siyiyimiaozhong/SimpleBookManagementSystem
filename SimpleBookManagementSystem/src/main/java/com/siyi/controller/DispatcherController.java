@@ -19,4 +19,9 @@ public class DispatcherController {
     public String adminBookAdd(){
         return "admin_book.html";
     }
+
+    @RequestMapping("admin_book_type")
+    public String adminBookType(){
+        return "admin_book_type.html";
+    }
 }
