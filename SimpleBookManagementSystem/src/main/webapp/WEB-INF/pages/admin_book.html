@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>新增图书</title>
+    <meta name="description" content="新增图书">
+    <meta name="keywords" content="新增图书">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="plugins/morris/morris.css">
+    <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="plugins/treeTable/jquery.treetable.css">
+    <link rel="stylesheet" href="plugins/treeTable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet" href="plugins/select2/select2.css">
+    <link rel="stylesheet" href="plugins/colorpicker/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" href="plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="plugins/ionslider/ion.rangeSlider.css">
+    <link rel="stylesheet" href="plugins/ionslider/ion.rangeSlider.skinNice.css">
+    <link rel="stylesheet" href="plugins/bootstrap-slider/slider.css">
+    <link rel="stylesheet" href="plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+
+<div class="wrapper">
+
+    <!-- 页面头部 -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="all-admin-index.html" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>数据</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>数据</b>后台管理</span>
+        </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="label label-success">4</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有4个邮件</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- start message -->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                系统消息
+                                                <small><i class="fa fa-clock-o"></i> 5 分钟前</small>
+                                            </h4>
+                                            <p>欢迎登录系统?</p>
+                                        </a>
+                                    </li>
+                                    <!-- end message -->
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                团队消息
+                                                <small><i class="fa fa-clock-o"></i> 2 小时前</small>
+                                            </h4>
+                                            <p>你有新的任务了</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                Developers
+                                                <small><i class="fa fa-clock-o"></i> Today</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                Sales Department
+                                                <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                Reviewers
+                                                <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">See All Messages</a></li>
+                        </ul>
+                    </li>
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有10个新消息</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i> Very long description here that may
+                                            not
+                                            fit into the page and may cause design problems
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-red"></i> 5 new members joined
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user text-red"></i> You changed your username
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all</a></li>
+                        </ul>
+                    </li>
+                    <!-- Tasks: style can be found in dropdown.less -->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有9个新任务</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Design some buttons
+                                                <small class="pull-right">20%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
+                                                    <span class="sr-only">20% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Create a nice theme
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
+                                                    <span class="sr-only">40% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Some task I need to do
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
+                                                    <span class="sr-only">60% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Make beautiful transitions
+                                                <small class="pull-right">80%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 80%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
+                                                    <span class="sr-only">80% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">View all tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">私忆一秒钟</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                                <p>
+                                    私忆一秒钟 - 开发人员
+                                    <small>最后登录 11:20AM</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body
+                    <li class="user-body">
+                        <div class="row">
+                            <div class="col-xs-4 text-center">
+                                <a href="#">Followers</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#">Sales</a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#">Friends</a>
+                            </div>
+                        </div>
+                    </li>-->
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">修改密码</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">注销</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- 页面头部 /-->
+    <!-- 导航侧栏 -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>私忆一秒钟</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header">菜单</li>
+                <li id="admin-index"><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+                <!-- 菜单 -->
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder"></i> <span>图书管理</span>
+                        <span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li id="admin-allbook">
+                            <a href="admin_main">
+                                <i class="fa fa-circle-o"></i> 全部图书
+                            </a>
+                        </li>
+                        <li id="admin-alltype">
+                            <a href="admin_type">
+                                <i class="fa fa-circle-o"></i> 全部分类
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-pie-chart"></i> <span>读者管理</span>
+                        <span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li id="charts-chartjs">
+                            <a href="all-charts-chartjs.html">
+                                <i class="fa fa-circle-o"></i> 全部读者
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-laptop"></i> <span>借阅管理</span>
+                        <span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li id="elements-general">
+                            <a href="all-elements-general.html">
+                                <i class="fa fa-circle-o"></i> 逾期管理
+                            </a>
+                        </li>
+
+                        <li id="elements-icons">
+                            <a href="all-elements-icons.html">
+                                <i class="fa fa-circle-o"></i> 未归还图书
+                            </a>
+                        </li>
+
+                        <li id="elements-buttons">
+                            <a href="all-elements-buttons.html">
+                                <i class="fa fa-circle-o"></i> 借阅日志
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- 菜单 /-->
+                <li id="admin-documentation"><a href="documentation.html" target="_blank"><i class="fa fa-book"></i> <span>密码修改</span></a>
+                </li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- 导航侧栏 /-->
+    <div class="content-wrapper">
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                新增
+                <small>图书</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li><a href="#">图书</a></li>
+                <li class="active">新增图书</li>
+            </ol>
+        </section>
+        <!-- 内容头部 /-->
+
+        <!-- 正文区域 -->
+        <section class="content">
+            <div class="box-body">
+                <!--tab页-->
+                <div class="nav-tabs-custom">
+                    <!--tab内容-->
+                    <div class="tab-content">
+                        <!--基础控件-->
+                        <div class="tab-pane active" id="tab-common">
+                            <div class="row data-type">
+                                <div class="col-md-2 title">图书名</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="图书名" value="" id="book-name">
+                                </div>
+                                <div class="col-md-2 title">作者</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="作者" value="" id="book-author">
+                                </div>
+                                <div class="col-md-2 title">出版社</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="出版社" value="" id="book-publish">
+                                </div>
+                                <div class="col-md-2 title">ISBN</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="ISBN" value="" id="book-ISBN">
+                                </div>
+                                <div class="col-md-2 title">价格</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="价格" value="" id="book-price">
+                                </div>
+                                <div class="col-md-2 title">数量</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="数量" value="" id="book-number">
+                                </div>
+                                <div class="col-md-2 title">种类</div>
+                                <div class="col-md-4 data">
+                                    <select class="form-control" id="book_type">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                        <option>option 5</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-2 title">出版日期</div>
+                                <div class="col-md-4 data">
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+                                </div>
+                                <div class="col-md-2 title">语言</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="语言" value="" id="book-language">
+                                </div>
+                                <div class="col-md-6 data"></div>
+
+                                <div class="col-md-2 title rowHeight2x">简介</div>
+                                <div class="col-md-10 data rowHeight2x">
+                                    <textarea class="form-control" rows="3" placeholder="请输入..." id="book-introduction"></textarea>
+                                </div>
+                                <div class="col-md-2 title"></div>
+                                <div class="col-md-10 data text-center">
+                                    <button type="button" class="btn bg-maroon" onclick="submit()">保存</button>
+                                    <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--基础控件/-->
+                    </div>
+                    <!--tab内容/-->
+                </div>
+            </div>
+        </section>
+        <!-- 正文区域 /-->
+    </div>
+</div>
+
+
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="plugins/jQueryUI/jquery-ui.min.js"></script>
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="plugins/raphael/raphael-min.js"></script>
+<script src="plugins/morris/morris.min.js"></script>
+<script src="plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="plugins/knob/jquery.knob.js"></script>
+<script src="plugins/daterangepicker/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.zh-CN.js"></script>
+<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="plugins/fastclick/fastclick.js"></script>
+<script src="plugins/iCheck/icheck.min.js"></script>
+<script src="plugins/adminLTE/js/app.min.js"></script>
+<script src="plugins/treeTable/jquery.treetable.js"></script>
+<script src="plugins/select2/select2.full.min.js"></script>
+<script src="plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<script src="plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js"></script>
+<script src="plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script src="plugins/bootstrap-markdown/locale/bootstrap-markdown.zh.js"></script>
+<script src="plugins/bootstrap-markdown/js/markdown.js"></script>
+<script src="plugins/bootstrap-markdown/js/to-markdown.js"></script>
+<script src="plugins/ckeditor/ckeditor.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="plugins/chartjs/Chart.min.js"></script>
+<script src="plugins/flot/jquery.flot.min.js"></script>
+<script src="plugins/flot/jquery.flot.resize.min.js"></script>
+<script src="plugins/flot/jquery.flot.pie.min.js"></script>
+<script src="plugins/flot/jquery.flot.categories.min.js"></script>
+<script src="plugins/ionslider/ion.rangeSlider.min.js"></script>
+<script src="plugins/bootstrap-slider/bootstrap-slider.js"></script>
+<script src="plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+<script src="plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="layer/layer.js"></script>
+<script>
+    $(document).ready(function() {
+
+        //Date picker
+        $('#datepicker').datepicker({
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            language: 'zh-CN'
+        });
+    });
+
+    function formatDate(time) {
+        var date = new Date(time);
+        var t=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDay();
+        return t;
+    }
+
+    function submit(){
+        var add="book/addBook";
+        var update="book/updateBook?bookId="+getQueryString("id");
+        var bookName=$("#book-name").val();
+        if(bookName == ""){
+            layer.msg("图书名不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var author=$("#book-author").val();
+        if(author == ""){
+            layer.msg("作者不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var publish=$("#book-publish").val();
+        if(publish == ""){
+            layer.msg("出版社不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var ISBN=$("#book-ISBN").val();
+        if(ISBN == ""){
+            layer.msg("ISBN不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var price=$("#book-price").val();
+        if(price == ""){
+            layer.msg("价格不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var number=$("#book-number").val();
+        if(price == ""){
+            layer.msg("数量不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var type=$("#book_type option:checked").val();
+        if(type == ""){
+            layer.msg("种类不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var pubDate=$("#datepicker").val();
+        if(pubDate == ""){
+            layer.msg("出版日期不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var introduction=$("#book-introduction").val();
+        if(introduction == ""){
+            layer.msg("简介不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var language=$("#book-language").val();
+        if(language == ""){
+            layer.msg("语言不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
+            });
+            return false;
+        }
+        var loadingIndex=null;
+        $.ajax({
+            type:"post",
+            url: getQueryString("id")?update:add,
+            data:{
+                "name": bookName,
+                "author": author,
+                "publish": publish,
+                "ISBN": ISBN,
+                "introduction": introduction,
+                "language": language,
+                "price": price,
+                "pubDate": pubDate,
+                "type": type,
+                "total": number
+            },
+            beforeSend:function(){
+                loadingIndex = layer.msg('处理中', {icon: 16});
+            },
+            success:function(result) {
+                layer.close(loadingIndex);
+                if(result.success){
+                    layer.msg("操作成功", {time:2000, icon:1, shift:1}, function(){
+                    });
+                    window.location.href="admin_main";
+                }else{
+                    layer.msg("操作失败，请重试", {time:2000, icon:2, shift:6}, function(){
+                    });
+                }
+            }
+        })
+    }
+
+    function getQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+    $(function () {
+        var id=getQueryString("id");
+        var selected="";
+        if(id && id!=""){
+            var loadingIndex = null;
+            $.ajax({
+                type:"post",
+                url:"book/show",
+                data:{
+                    "id":id
+                },
+                beforeSend:function(){
+                    loadingIndex = layer.msg('处理中', {icon: 16});
+                },
+                success:function(result) {
+                    layer.close(loadingIndex);
+                    $("#book-name").val(result.name);
+                    $("#book-author").val(result.author);
+                    $("#book-publish").val(result.publish);
+                    $("#book-ISBN").val(result.isbn);
+                    $("#book-price").val(result.price);
+                    $("#book-number").val(result.number);
+                    $("#datepicker").val(formatDate(result.pubDate));
+                    $("#book-introduction").val(result.introduction);
+                    $("#book-language").val(result.language);
+                    selected=result.type;
+                }
+            })
+        }
+        $.ajax({
+            type:"post",
+            url:"book/type",
+            beforeSend:function(){
+                loadingIndex = layer.msg('处理中', {icon: 16});
+            },
+            success:function(result) {
+                layer.close(loadingIndex);
+                var html="";
+                var len = result.length;
+                for(var i=0;i<len;i++){
+                    if(id && id!="" && selected==result[i].typeName){
+                        html+="<option value='"+result[i].typeId+"' selected='true'>"+result[i].typeName+"</option>"
+                    }else{
+                        html+="<option value='"+result[i].typeId+"'>"+result[i].typeName+"</option>"
+                    }
+                }
+                $("#book_type").html(html);
+            }
+        });
+
+    })
+</script>
+</body>
+</html>
