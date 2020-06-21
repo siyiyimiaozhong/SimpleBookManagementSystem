@@ -37,9 +37,9 @@ public interface BookInfoDAO {
 
     @Select("select * from book_info where name like #{key}")
     @ResultMap("bookInfo")
-    List<BookInfo> findAllByBookName(@Param("key") String key);
+    public List<BookInfo> findAllByBookName(@Param("key") String key);
 
     @Select("select * from book_info where book_id=#{id}")
     @ResultMap("bookInfo")
-    BookInfo findBookById(@Param("id") Long id);
+    public BookInfo findBookById(@Param("id") Long id);
 }

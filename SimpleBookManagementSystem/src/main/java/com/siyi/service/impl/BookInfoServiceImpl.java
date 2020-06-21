@@ -27,13 +27,8 @@ public class BookInfoServiceImpl implements BookInfoService {
      */
     public PageResult<BookInfo> findAll(String key, Integer page, Integer rows) {
         List<BookInfo> books = null;
-<<<<<<< HEAD
         if(key!=null && key.length()!=0){
             key="%"+key+"%";
-=======
-        System.out.println(rows);
-        if(key!=null && key.length()!=0){
->>>>>>> 043410927cf4b53fbdafa8aa1790450f079e9879
             PageHelper.startPage(page,rows);
             books = bookInfoDAO.findAllByBookName(key);
         }else{
