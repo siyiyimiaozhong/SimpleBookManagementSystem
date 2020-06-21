@@ -7,4 +7,10 @@ import java.util.List;
 
 public interface BookTypeService {
     List<BookType> findAll();
+
+    int addType(BookType type);
+
+    int deleteById(Long id);
+
+    boolean deleteByIdArray(String[] ids);
 }

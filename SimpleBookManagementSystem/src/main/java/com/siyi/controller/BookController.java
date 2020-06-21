@@ -88,9 +88,18 @@ public class BookController {
     @RequestMapping("deleteBook")
     @ResponseBody
     public Result deleteBook(@RequestParam("id") Long id){
+        return getResult(bookInfoService.deleteById(id));
+    }
+
+    @RequestMapping("deleteType")
+    @ResponseBody
+    public Result deleteType(@RequestParam("id") Long id){
+        return getResult(bookTypeService.deleteById(id));
+    }
+
+    private Result getResult(int res) {
         Result result = new Result();
-        int i = bookInfoService.deleteById(id);
-        if(i!=1){
+        if(res!=1){
             result.setSuccess(false);
         }else{
             result.setSuccess(true);
@@ -101,13 +110,34 @@ public class BookController {
     @RequestMapping("deleteBooks")
     @ResponseBody
     public Result deleteBooksByIds(@RequestParam("ids") String ids){
-        String[] idArray = ids.split(",");
+        return getResultByIds(bookInfoService.deleteByIdArray(ids.split(",")));
+    }
+
+    @RequestMapping("deleteTypes")
+    @ResponseBody
+    public Result deleteTypes(@RequestParam("ids") String ids){
+        return getResultByIds(bookTypeService.deleteByIdArray(ids.split(",")));
+    }
+
+    private Result getResultByIds(Boolean res) {
         Result result = new Result();
-        boolean flag = bookInfoService.deleteByIdArray(idArray);
-        if(flag){
+        if(res){
             result.setSuccess(true);
         }else{
             result.setSuccess(false);
+        }
+        return result;
+    }
+
+    @RequestMapping("addType")
+    @ResponseBody
+    public Result addType(BookType type){
+        Result result = new Result();
+        int i = bookTypeService.addType(type);
+        if(i!=1){
+            result.setSuccess(false);
+        }else{
+            result.setSuccess(true);
         }
         return result;
     }

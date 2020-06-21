@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>全部图书</title>
-    <meta name="description" content="全部图书">
-    <meta name="keywords" content="全部图书">
+
+    <title>新增分类</title>
+    <meta name="description" content="新增分类">
+    <meta name="keywords" content="新增分类">
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/ionicons/css/ionicons.min.css">
@@ -46,7 +46,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>数据</b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>图书</b>管理系统</span>
+            <span class="logo-lg"><b>数据</b>后台管理</span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -312,7 +312,6 @@
         </nav>
     </header>
     <!-- 页面头部 /-->
-
     <!-- 导航侧栏 -->
     <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
@@ -334,32 +333,31 @@
                 <!-- 菜单 -->
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-folder"></i> <span>图书管理</span>
+                        <i class="fa fa-folder"></i> <span>分类管理</span>
                         <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
                     </a>
                     <ul class="treeview-menu">
 
                         <li id="admin-allbook">
                             <a href="admin_main">
-                                <i class="fa fa-circle-o"></i> 全部图书
+                                <i class="fa fa-circle-o"></i> 全部分类
                             </a>
                         </li>
-                        <li id="admin-all-type">
+                        <li id="admin-alltype">
                             <a href="admin_book_type">
                                 <i class="fa fa-circle-o"></i> 全部分类
                             </a>
                         </li>
-
                     </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i> <span>读者管理</span>
                         <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
                     </a>
                     <ul class="treeview-menu">
 
@@ -374,8 +372,8 @@
                     <a href="#">
                         <i class="fa fa-laptop"></i> <span>借阅管理</span>
                         <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
                     </a>
                     <ul class="treeview-menu">
 
@@ -387,7 +385,7 @@
 
                         <li id="elements-icons">
                             <a href="all-elements-icons.html">
-                                <i class="fa fa-circle-o"></i> 未归还图书
+                                <i class="fa fa-circle-o"></i> 未归还分类
                             </a>
                         </li>
 
@@ -406,135 +404,46 @@
         <!-- /.sidebar -->
     </aside>
     <!-- 导航侧栏 /-->
-
-    <!-- 内容区域 -->
     <div class="content-wrapper">
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                图书管理
-                <small>全部图书</small>
+                新增
+                <small>分类</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">图书管理</a></li>
-                <li class="active">全部图书</li>
+                <li><a href="#">分类</a></li>
+                <li class="active">新增分类</li>
             </ol>
         </section>
         <!-- 内容头部 /-->
 
         <!-- 正文区域 -->
         <section class="content">
-
-            <!-- .box-body -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">列表</h3>
-                </div>
-
-                <div class="box-body">
-                    <!-- 数据表格 -->
-                    <div class="table-box">
-                        <!--工具栏-->
-                        <div class="pull-left">
-                            <div class="form-group form-inline">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default" title="新建" onclick="addBook()"><i class="fa fa-file-o"></i> 新增</button>
-                                    <button type="button" class="btn btn-default" title="删除" onclick="deleteBooks()"><i class="fa fa-trash-o"></i> 删除</button>
-                                    <button type="button" class="btn btn-default" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
+            <div class="box-body">
+                <!--tab页-->
+                <div class="nav-tabs-custom">
+                    <!--tab内容-->
+                    <div class="tab-content">
+                        <!--基础控件-->
+                        <div class="tab-pane active" id="tab-common">
+                            <div class="row data-type">
+                                <div class="col-md-2 title">分类名</div>
+                                <div class="col-md-4 data">
+                                    <input type="text" class="form-control" placeholder="分类名" value="" id="type-name">
+                                </div>
+                                <div class="col-md-2 title"></div>
+                                <div class="col-md-10 data text-center">
+                                    <button type="button" class="btn bg-maroon" onclick="submit()">保存</button>
+                                    <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="box-tools pull-right">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control input-sm" placeholder="搜索" id="search">
-                                <span class="glyphicon glyphicon-search form-control-feedback" onclick="search()"></span>
-                            </div>
-                        </div>
-                        <!--工具栏/-->
-
-                        <!--数据列表-->
-                        <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
-                            <thead>
-                            <tr>
-                                <th class="" style="padding-right:0px;">
-                                    <input id="selall" type="checkbox" class="icheckbox_square-blue">
-                                </th>
-                                <th class="text-center">图书编号</th>
-                                <th class="text-center">图书名</th>
-                                <th class="text-center">作者</th>
-                                <th class="text-center">出版社</th>
-                                <th class="text-center">种类</th>
-                                <th class="text-center">价格</th>
-                                <th class="text-center">创建时间</th>
-                                <th class="text-center">剩余数量/总数</th>
-                                <th class="text-center">操作</th>
-                            </tr>
-                            </thead>
-                            <tbody id="book_tbody">
-
-                            <tr>
-                                <td><input name="ids" type="checkbox"></td>
-                                <td class="text-center">${book.id}</td>
-                                <td class="text-center">${book.name}</td>
-                                <td class="text-center">${book.author}</td>
-                                <td class="text-center">${book.publish}</td>
-                                <td class="text-center">${book.type}</td>
-                                <td class="text-center">${book.price}</td>
-                                <td class="text-center">${book.createTime}</td>
-                                <td class="text-center">${book.number}/${book.total}</td>
-                                <td class="text-center">
-                                    <button type="button" class="btn bg-olive btn-xs">编辑</button>
-                                    <button type="button" class="btn bg-olive btn-xs">详情</button>
-                                    <button type="button" class="btn bg-olive btn-xs">删除</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <!--数据列表/-->
-
-                        <!--工具栏-->
-                        <div class="pull-left">
-                            <div class="form-group form-inline">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default" title="新建" onclick="addBook()"><i class="fa fa-file-o"></i> 新增</button>
-                                    <button type="button" class="btn btn-default" title="删除" onclick="deleteBooks()"><i class="fa fa-trash-o"></i> 删除</button>
-                                    <button type="button" class="btn btn-default" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!--工具栏/-->
-
+                        <!--基础控件/-->
                     </div>
-                    <!-- 数据表格 /-->
+                    <!--tab内容/-->
                 </div>
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <div class="form-group form-inline">
-                            总共<span id="pagetotal"></span> 页，共<span id="total"></span> 条数据。
-                        </div>
-                    </div>
-
-                    <div class="box-tools pull-right">
-                        <ul class="pagination" id="page">
-                            <li>
-                                <a href="#" aria-label="Previous">首页</a>
-                            </li>
-                            <li><a href="#">上一页</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">下一页</a></li>
-                            <li>
-                                <a href="#" aria-label="Next">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /.box-footer-->
             </div>
         </section>
         <!-- 正文区域 /-->
@@ -589,102 +498,52 @@
 <script src="plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 <script src="layer/layer.js"></script>
 <script>
-    $(document).ready(function() {
-        // 选择框
-        $(".select2").select2();
 
-        // WYSIHTML5编辑器
-        $(".textarea").wysihtml5({
-            locale: 'zh-CN'
-        });
-    });
-    // 设置激活菜单
-    function setSidebarActive(tagUri) {
-        var liObj = $("#" + tagUri);
-        if (liObj.length > 0) {
-            liObj.parent().parent().addClass("active");
-            liObj.addClass("active");
-        }
-    }
-
-    $(document).ready(function() {
-
-        // 激活导航位置
-        setSidebarActive("admin-allbook");
-
-        // 列表按钮
-        $("#dataList td input[type='checkbox']").iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            increaseArea: '20%'
-        });
-        // 全选操作
-        $("#selall").click(function() {
-            var clicks = $(this).is(':checked');
-            if (!clicks) {
-                $("#dataList td input[type='checkbox']").iCheck("uncheck");
-            } else {
-                $("#dataList td input[type='checkbox']").iCheck("check");
-            }
-            $(this).data("clicks", !clicks);
-        });
-    });
-    //回车事件绑定
-    $('#search').bind('keypress', function(event) {
-        if (event.keyCode == "13") {
-            event.preventDefault();
-            //回车执行查询
-            var search=$("#search").val();
-            fun(1,10,search);
-        }
-    });
-
-    function deleteBooks() {
-        layer.confirm('你确定要删除吗?', {icon: 3, title:'提示'}, function(index){
-            var s='';
-            $('#book_tbody input[name="ids"]:checked').each(function(){
-                s+=$(this).val()+',';
+    function submit(){
+        var typeName=$("#type-name").val();
+        if(typeName == ""){
+            layer.msg("分类名不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
             });
-            s = s.substr(0,s.length-1);
-            var loadingIndex=null;
-            $.ajax({
-                type:"post",
-                url: "book/deleteBooks",
-                data:{
-                    "ids":s
-                },
-                beforeSend:function(){
-                    loadingIndex = layer.msg('处理中', {icon: 16});
-                },
-                success:function(result) {
-                    layer.close(loadingIndex);
-                    if(result.success){
-                        layer.msg("操作成功", {time:2000, icon:1, shift:1}, function(){
-                        });
-                        window.location.href="admin_main";
-                    }else{
-                        layer.msg("操作失败，请重试", {time:2000, icon:2, shift:6}, function(){
-                        });
-                    }
+            return false;
+        }
+        var loadingIndex=null;
+        $.ajax({
+            type:"post",
+            url: "book/addType",
+            data:{
+                "typeName":typeName
+            },
+            beforeSend:function(){
+                loadingIndex = layer.msg('处理中', {icon: 16});
+            },
+            success:function(result) {
+                layer.close(loadingIndex);
+                if(result.success){
+                    layer.msg("操作成功", {time:2000, icon:1, shift:1}, function(){
+                    });
+                    window.location.href="admin_book_type";
+                }else{
+                    layer.msg("操作失败，请重试", {time:2000, icon:2, shift:6}, function(){
+                    });
                 }
-            });
-            layer.close(index);
-        });
+            }
+        })
     }
 
-    function book_update(id) {
-        window.location.href="admin_book?id="+id;
+    function getQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
     }
 
-    function addBook(){
-        window.location.href="admin_book";
-    }
-
-    function book_delete(id){
-        layer.confirm('你确定要删除吗?', {icon: 3, title:'提示'}, function(index){
-            var loadingIndex =null;
+    $(function () {
+        var id=getQueryString("id");
+        var selected="";
+        if(id && id!=""){
+            var loadingIndex = null;
             $.ajax({
                 type:"post",
-                url: "book/deleteBook",
+                url:"book/show",
                 data:{
                     "id":id
                 },
@@ -693,85 +552,41 @@
                 },
                 success:function(result) {
                     layer.close(loadingIndex);
-                    if(result.success){
-                        layer.msg("操作成功", {time:2000, icon:1, shift:1}, function(){
-                        });
-                        window.location.href="admin_main";
-                    }else{
-                        layer.msg("操作失败，请重试", {time:2000, icon:2, shift:6}, function(){
-                        });
-                    }
+                    $("#book-name").val(result.name);
+                    $("#book-author").val(result.author);
+                    $("#book-publish").val(result.publish);
+                    $("#book-ISBN").val(result.isbn);
+                    $("#book-price").val(result.price);
+                    $("#book-number").val(result.total);
+                    $("#datepicker").val(formatDate(result.pubDate));
+                    $("#book-introduction").val(result.introduction);
+                    $("#book-language").val(result.language);
+                    selected=result.type;
                 }
-            });
-            layer.close(index);
-        });
-    }
-
-    $(function () {
-        fun(1,10);
-    });
-    function book_show(id){
-        window.location.href="admin_book_show?id="+id;
-    }
-
-    function fun(page,rows,key) {
-        var loadingIndex = null;
+            })
+        }
         $.ajax({
             type:"post",
-            url:"book/page",
-            data:{
-                "key": key,
-                "page": page,
-                "rows": rows
-            },
+            url:"book/type",
             beforeSend:function(){
                 loadingIndex = layer.msg('处理中', {icon: 16});
             },
-            success:function(result){
+            success:function(result) {
                 layer.close(loadingIndex);
                 var html="";
-                var books=result.items;
-                var len=books.length;
+                var len = result.length;
                 for(var i=0;i<len;i++){
-                    html+='<tr>'
-                            +'<td><input name="ids" type="checkbox" value="'+books[i].bookId+'"></td>'
-                            +'<td class="text-center">'+books[i].bookId+'</td>'
-                            +'<td class="text-center">'+books[i].name+'</td>'
-                            +'<td class="text-center">'+books[i].author+'</td>'
-                            +'<td class="text-center">'+books[i].publish+'</td>'
-                            +'<td class="text-center">'+books[i].type+'</td>'
-                            +'<td class="text-center">'+books[i].price+'</td>'
-                            +'<td class="text-center">'+new Date(books[i].createTime).toLocaleString()+'</td>'
-                            +'<td class="text-center">'+books[i].number+'/'+books[i].total+'</td>'
-                            +'<td class="text-center">'
-                                +'<button type="button" class="btn bg-olive btn-xs" onclick="book_update('+books[i].bookId+')">编辑</button>'
-                                +'<button type="button" class="btn bg-olive btn-xs" onclick="book_show('+books[i].bookId+')">详情</button>'
-                                +'<button type="button" class="btn bg-olive btn-xs" onclick="book_delete('+books[i].bookId+')">删除</button>'
-                            +'</td>'
-                        +'</tr>'
+                    if(id && id!="" && selected==result[i].typeName){
+                        html+="<option value='"+result[i].typeId+"' selected='true'>"+result[i].typeName+"</option>"
+                    }else{
+                        html+="<option value='"+result[i].typeId+"'>"+result[i].typeName+"</option>"
+                    }
                 }
-                $("#book_tbody").html(html);
-                $("#pagetotal").html(result.totalPage);
-                $("#total").html(result.total);
-                var search=$("#search").val();
-                var totalPage=result.totalPage;
-                var total=result.total;
-                var s="";
-                s+='<li><a href="#" aria-label="Previous" onclick="fun('+1+','+rows+','+search+')">首页</a></li>';
-                s+='<li><a href="#" onclick="fun('+(page>1?page-1:1)+','+rows+','+search+')">上一页</a></li>';
-                var index=0;
-                if(page-2>0) index=page-2;
-                else index=1;
-                for(var i=0;i<5;i++){
-                    s+='<li><a href="#" onclick="fun('+(index+i)+','+rows+','+search+')">'+(i+index)+'</a></li>';
-                    if(index+i==totalPage) break;
-                }
-                s+='<li><a href="#" onclick="fun('+(page==totalPage?page:page+1)+','+rows+','+search+')">下一页</a></li>'
-                s+='<li><a href="#" aria-label="Next" onclick="fun('+totalPage+','+rows+','+search+')">尾页</a></li>'
-                $("#page").html(s);
+                $("#book_type").html(html);
             }
-        })
-    }
+        });
+
+    })
 </script>
 </body>
 </html>
