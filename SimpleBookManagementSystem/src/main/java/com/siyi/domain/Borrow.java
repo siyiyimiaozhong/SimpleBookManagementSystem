@@ -5,20 +5,12 @@ import java.util.Date;
 
 public class Borrow implements Serializable {
     private String borrowId;
-    private Long bookId;
-    private Long readerId;
+    private String bookName;
+    private String readerName;
     private Date lendDate;//借出时间
     private Date backDate;//归还时间
 
     public Borrow() {
-    }
-
-    public Borrow(String borrowId, Long bookId, Long readerId, Date lendDate, Date backDate) {
-        this.borrowId = borrowId;
-        this.bookId = bookId;
-        this.readerId = readerId;
-        this.lendDate = lendDate;
-        this.backDate = backDate;
     }
 
     public String getBorrowId() {
@@ -29,20 +21,20 @@ public class Borrow implements Serializable {
         this.borrowId = borrowId;
     }
 
-    public Long getBookId() {
-        return bookId;
+    public String getBookName() {
+        return bookName;
     }
 
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
-    public Long getReaderId() {
-        return readerId;
+    public String getReaderName() {
+        return readerName;
     }
 
-    public void setReaderId(Long readerId) {
-        this.readerId = readerId;
+    public void setReaderName(String readerName) {
+        this.readerName = readerName;
     }
 
     public Date getLendDate() {
@@ -61,12 +53,20 @@ public class Borrow implements Serializable {
         this.backDate = backDate;
     }
 
+    public Borrow(String borrowId, String bookName, String readerName, Date lendDate, Date backDate) {
+        this.borrowId = borrowId;
+        this.bookName = bookName;
+        this.readerName = readerName;
+        this.lendDate = lendDate;
+        this.backDate = backDate;
+    }
+
     @Override
     public String toString() {
         return "Borrow{" +
                 "borrowId='" + borrowId + '\'' +
-                ", bookId='" + bookId + '\'' +
-                ", readerId='" + readerId + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", readerName='" + readerName + '\'' +
                 ", lendDate=" + lendDate +
                 ", backDate=" + backDate +
                 '}';

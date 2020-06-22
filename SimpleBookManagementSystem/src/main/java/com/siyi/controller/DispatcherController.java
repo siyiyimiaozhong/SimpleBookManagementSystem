@@ -39,4 +39,9 @@ public class DispatcherController {
     public String adminReader(){
         return "admin_reader.html";
     }
+
+    @RequestMapping("adminOverdue")
+    public String adminOverdue(){
+        return "admin_overdue.html";
+    }
 }

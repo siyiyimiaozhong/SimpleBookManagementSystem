@@ -42,4 +42,7 @@ public interface BookInfoDAO {
     @Select("select * from book_info where book_id=#{id}")
     @ResultMap("bookInfo")
     public BookInfo findBookById(@Param("id") Long id);
+
+    @Select("select name from book_info where book_id=#{id}")
+    public String findBookNameById(@Param("id")Long id);
 }

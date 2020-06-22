@@ -39,4 +39,7 @@ public interface ReaderInfoDAO {
 
     @Select("select * from reader_info where reader_id=#{id}")
     ReaderInfo findReaderById(@Param("id") Long id);
+
+    @Select("select name from reader_info where reader_id=#{id}")
+    public String findReaderNameById(@Param("id") Long id);
 }
