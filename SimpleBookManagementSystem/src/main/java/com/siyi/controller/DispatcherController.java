@@ -59,4 +59,14 @@ public class DispatcherController {
     public String changePassword(){
         return "change_password.html";
     }
+
+    @RequestMapping("header")
+    public String header(){
+        return "header.html";
+    }
+
+    @RequestMapping("adminAside")
+    public String aside(){
+        return "admin_aside.html";
+    }
 }
