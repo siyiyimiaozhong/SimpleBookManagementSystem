@@ -109,4 +109,21 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
         }
         return true;
     }
+
+    /**
+     * 根据id修改密码
+     * @param id
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    @Override
+    public Integer updatePW(Long id, String oldPassword, String newPassword) {
+        ReaderInfo reader = readerInfoDAO.findReaderById(id);
+        if(reader.getPassword().equals(oldPassword)){
+            reader.setPassword(newPassword);
+            return readerInfoDAO.updateReader(reader);
+        }
+        return null;
+    }
 }

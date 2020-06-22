@@ -19,4 +19,13 @@ public class AdminServiceImpl implements AdminService {
         }
         return null;
     }
+
+    @Override
+    public Integer updatePW(Long id, String oldPassword, String newPassword) {
+        String pw = adminDAO.findPasswordById(id);
+        if(pw.equals(oldPassword)){
+            return adminDAO.updatePW(id,newPassword);
+        }
+        return null;
+    }
 }

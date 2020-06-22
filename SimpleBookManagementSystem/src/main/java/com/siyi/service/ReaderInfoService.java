@@ -17,4 +17,6 @@ public interface ReaderInfoService {
     int deleteReaderById(Long id);
 
     boolean deleteReaders(String[] ids);
+
+    Integer updatePW(Long id, String oldPassword, String newPassword);
 }

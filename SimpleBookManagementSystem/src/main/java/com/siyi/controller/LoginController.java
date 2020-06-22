@@ -8,6 +8,7 @@ import com.siyi.service.ReaderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,32 @@ public class LoginController {
             }
         }
         System.out.println(result.getSuccess());
+        return result;
+    }
+
+    @RequestMapping("updatePW")
+    @ResponseBody
+    public Result updatePW(
+            @RequestParam("oldPassword") String oldPassword,
+            @RequestParam("newPassword") String newPassword,
+            HttpSession session
+    ){
+        Result result = new Result();
+        Object user = session.getAttribute("user");
+        Integer i=null;
+        if(user instanceof Admin){
+            System.out.println((Admin)user);
+            Long id = ((Admin) user).getAdminId();
+            i = adminService.updatePW(id,oldPassword,newPassword);
+        }else{
+            Long id = ((ReaderInfo) user).getReaderId();
+            i = readerInfoService.updatePW(id,oldPassword,newPassword);
+        }
+        if(i==1){
+            result.setSuccess(true);
+        }else{
+            result.setSuccess(false);
+        }
         return result;
     }
 }

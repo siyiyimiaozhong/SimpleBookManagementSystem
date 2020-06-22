@@ -54,4 +54,9 @@ public class DispatcherController {
     public String adminBorrow(){
         return "admin_borrow.html";
     }
+
+    @RequestMapping("changePassword")
+    public String changePassword(){
+        return "change_password.html";
+    }
 }
