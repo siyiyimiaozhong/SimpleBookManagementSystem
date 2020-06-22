@@ -1,5 +1,7 @@
 package com.siyi.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.siyi.dao.BookInfoDAO;
 import com.siyi.dao.BookTypeDAO;
 import com.siyi.dao.BorrowDAO;
@@ -8,6 +10,7 @@ import com.siyi.domain.BookInfo;
 import com.siyi.domain.Borrow;
 import com.siyi.domain.ReaderInfo;
 import com.siyi.service.BorrowService;
+import com.siyi.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,5 +95,79 @@ public class BorrowServiceImpl implements BorrowService {
             if(i!=1) return false;
         }
         return true;
+    }
+
+    /**
+     * 根绝查询条件分页查询未归还借阅信息
+     * @param key
+     * @param value
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public PageResult<Borrow> findAllByNotReturn(String key, String value, Integer page, Integer rows) {
+        List<Borrow> borrows=null;
+        if(value==null || value.length()==0){
+            PageHelper.startPage(page,rows);
+            borrows = borrowDAO.findNotReturn();
+        }else{
+            value="%"+value+"%";
+            List<Long> ids=null;
+            if(key.equals("bookName")){
+                key="book_id";
+                List<BookInfo> books = bookInfoDAO.findAllByBookName(value);
+                ids = books.stream().map(bookInfo -> {
+                    return bookInfo.getBookId();
+                }).collect(Collectors.toList());
+            }else{
+                key="reader_id";
+                List<ReaderInfo> readers = readerInfoDAO.findReadersByKey(value);
+                ids = readers.stream().map(readerInfo -> {
+                    return readerInfo.getReaderId();
+                }).collect(Collectors.toList());
+            }
+            PageHelper.startPage(page,rows);
+            borrows = borrowDAO.findNotReturnByKeyAndValue(key,ids);
+        }
+        PageInfo pageInfo = new PageInfo(borrows);
+        return new PageResult<Borrow>((int)pageInfo.getTotal(),pageInfo.getPages(),borrows);
+    }
+
+    /**
+     * 查询所有借阅记录
+     * @param key
+     * @param value
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public PageResult<Borrow> findAll(String key, String value, Integer page, Integer rows) {
+        List<Borrow> borrows=null;
+        if(value==null || value.length()==0){
+            PageHelper.startPage(page,rows);
+            borrows = borrowDAO.findAll();
+        }else{
+            value="%"+value+"%";
+            List<Long> ids=null;
+            if(key.equals("bookName")){
+                key="book_id";
+                List<BookInfo> books = bookInfoDAO.findAllByBookName(value);
+                ids = books.stream().map(bookInfo -> {
+                    return bookInfo.getBookId();
+                }).collect(Collectors.toList());
+            }else{
+                key="reader_id";
+                List<ReaderInfo> readers = readerInfoDAO.findReadersByKey(value);
+                ids = readers.stream().map(readerInfo -> {
+                    return readerInfo.getReaderId();
+                }).collect(Collectors.toList());
+            }
+            PageHelper.startPage(page,rows);
+            borrows = borrowDAO.findAllByKeyAndValue(key,ids);
+        }
+        PageInfo pageInfo = new PageInfo(borrows);
+        return new PageResult<Borrow>((int)pageInfo.getTotal(),pageInfo.getPages(),borrows);
     }
 }

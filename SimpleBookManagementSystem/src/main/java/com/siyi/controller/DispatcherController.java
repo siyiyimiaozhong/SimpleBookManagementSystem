@@ -44,4 +44,14 @@ public class DispatcherController {
     public String adminOverdue(){
         return "admin_overdue.html";
     }
+
+    @RequestMapping("adminNotReturn")
+    public String adminNotReturn(){
+        return "admin_not_return.html";
+    }
+
+    @RequestMapping("adminBorrow")
+    public String adminBorrow(){
+        return "admin_borrow.html";
+    }
 }

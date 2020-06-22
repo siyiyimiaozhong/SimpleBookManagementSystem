@@ -38,7 +38,18 @@ public interface BorrowDAO {
             + "<foreach item='item' index='index' collection='ids' open='(' separator=',' close=')'>"
             + "#{item}"
             + "</foreach>"
+            + " order by lend_date desc"
             + "</script>")
     @ResultMap("borrow")
     List<Borrow> findNotReturnByKeyAndValue(@Param("key") String key,@Param("ids") List<Long> ids);
+
+    @Select("<script>"
+            + "select * from `borrow` where ${key} in "
+            + "<foreach item='item' index='index' collection='ids' open='(' separator=',' close=')'>"
+            + "#{item}"
+            + "</foreach>"
+            + " order by lend_date desc"
+            + "</script>")
+    @ResultMap("borrow")
+    List<Borrow> findAllByKeyAndValue(String key, List<Long> ids);
 }
