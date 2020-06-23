@@ -1,5 +1,6 @@
 package com.siyi.controller;
 
+import com.siyi.dao.ReaderInfoDAO;
 import com.siyi.domain.BookInfo;
 import com.siyi.domain.Borrow;
 import com.siyi.domain.ReaderInfo;
@@ -27,6 +28,8 @@ public class BorrowController {
     private BorrowService borrowService;
     @Autowired
     private BookInfoService bookInfoService;
+    @Autowired
+    private ReaderInfoDAO readerInfoDAO;
 
     @RequestMapping("overdue")
     public ResponseEntity<List<Borrow>> overdue(
@@ -99,6 +102,8 @@ public class BorrowController {
     public Result borrow(@RequestParam("id") Long id, HttpSession session){
         Result result = new Result();
         ReaderInfo reader = (ReaderInfo)session.getAttribute("user");
+        reader.setBorrowCount(reader.getBorrowCount()+1);
+        readerInfoDAO.updateReader(reader);
         int i = borrowService.saveBorrow(id,reader.getReaderId());
         i += bookInfoService.borrow(id);
         if(i==2){
@@ -115,6 +120,8 @@ public class BorrowController {
         Result result = new Result();
         ReaderInfo reader = (ReaderInfo)session.getAttribute("user");
         String[] idArray = ids.split(",");
+        reader.setBorrowCount(reader.getBorrowCount()+idArray.length);
+        readerInfoDAO.updateReader(reader);
         for(String id:idArray){
             int i = borrowService.saveBorrow(Long.parseLong(id),reader.getReaderId());
             i += bookInfoService.borrow(Long.parseLong(id));

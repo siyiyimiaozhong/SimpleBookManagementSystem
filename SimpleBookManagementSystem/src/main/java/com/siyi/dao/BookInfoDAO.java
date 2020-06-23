@@ -56,4 +56,7 @@ public interface BookInfoDAO {
     @Select("select * from book_info where number>0 order by create_time desc")
     @ResultMap("bookInfo")
     List<BookInfo> findAllByNumber();
+
+    @Update("update book_info set number=number+1 where book_id=#{id}")
+    void addNumber(@Param("id") Long id);
 }

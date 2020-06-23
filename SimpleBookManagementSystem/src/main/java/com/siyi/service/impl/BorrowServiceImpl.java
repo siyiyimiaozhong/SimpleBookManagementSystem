@@ -93,6 +93,7 @@ public class BorrowServiceImpl implements BorrowService {
             borrow.setBorrowId(id);
             borrow.setBackDate(new Date());
             int i = borrowDAO.updateBorrowBackDate(borrow);
+            bookInfoDAO.addNumber(Long.parseLong(id));
             if(i!=1) return false;
         }
         return true;
