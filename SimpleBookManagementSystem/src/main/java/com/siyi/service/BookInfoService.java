@@ -15,4 +15,8 @@ public interface BookInfoService {
     int deleteById(Long id);
 
     boolean deleteByIdArray(String[] ids);
+
+    PageResult<BookInfo> findAllByNumber(String key, Integer page, Integer rows);
+
+    int borrow(Long id);
 }

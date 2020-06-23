@@ -31,6 +31,7 @@ public interface ReaderInfoDAO {
     public int updateReader(ReaderInfo readerInfo);
 
     @Select("select * from reader_info where username=#{username}")
+    @ResultMap("readerInfo")
     public ReaderInfo findReaderByUsername(String username);
 
     @Select("select * from reader_info where name like #{key} order by create_time desc")

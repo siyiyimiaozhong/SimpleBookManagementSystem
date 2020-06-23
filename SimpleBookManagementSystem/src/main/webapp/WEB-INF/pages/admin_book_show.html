@@ -207,7 +207,10 @@
         $.ajax({ url:"header", context: document.body, success: function(sView){
                 $("#header").append($(sView));
             }});
-        $.ajax({ url:'adminAside', context: document.body, success: function(sView)       {
+        $.ajax({
+            url: getQueryString("user")?'readerAside':'adminAside',
+            context: document.body,
+            success: function(sView)       {
                 $("#aside").append($(sView));
             }});
 

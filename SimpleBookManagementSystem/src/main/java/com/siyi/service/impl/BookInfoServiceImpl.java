@@ -40,6 +40,38 @@ public class BookInfoServiceImpl implements BookInfoService {
     }
 
     /**
+     * 根据条件查询还有剩余的所有图书
+     * @param key
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public PageResult<BookInfo> findAllByNumber(String key, Integer page, Integer rows) {
+        List<BookInfo> books = null;
+        if(key!=null && key.length()!=0){
+            key="%"+key+"%";
+            PageHelper.startPage(page,rows);
+            books = bookInfoDAO.findAllByBookNameAndNumber(key);
+        }else{
+            PageHelper.startPage(page,rows);
+            books = bookInfoDAO.findAllByNumber();
+        }
+        PageInfo<BookInfo> pageInfo = new PageInfo<BookInfo>(books);
+        return new PageResult<BookInfo>((int)pageInfo.getTotal(),pageInfo.getPages(),books);
+    }
+
+    /**
+     * 修改图书剩余数量
+     * @param id
+     * @return
+     */
+    @Override
+    public int borrow(Long id) {
+        return bookInfoDAO.updateNumber(id);
+    }
+
+    /**
      * 根据id查询图书
      * @param id
      * @return

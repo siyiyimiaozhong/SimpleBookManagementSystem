@@ -69,4 +69,14 @@ public class DispatcherController {
     public String aside(){
         return "admin_aside.html";
     }
+
+    @RequestMapping("readerAside")
+    public String readerAside(){
+        return "reader_aside.html";
+    }
+
+    @RequestMapping("reader_main")
+    public String reader_main(){
+        return "reader_search_book.html";
+    }
 }

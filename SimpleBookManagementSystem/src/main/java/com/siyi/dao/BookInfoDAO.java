@@ -28,6 +28,9 @@ public interface BookInfoDAO {
     @Update("update book_info set name=#{name},author=#{author},publish=#{publish},ISBN=#{ISBN},introduction=#{introduction},`language`=#{language},price=#{price},pub_date=#{pubDate},type_id=#{type},number=#{number},total=#{total},create_time=#{createTime} where book_id=#{bookId}")
     public int updateBookInfoById(BookInfo bookInfo);
 
+    @Update("update book_info set number=number-1 where book_id=#{id}")
+    public int updateNumber(@Param("id") Long id);
+
     @Insert("insert into book_info(name,author,publish,ISBN,introduction,`language`,price,pub_date,type_id,number,total,create_time) " +
             "VALUE(#{name},#{author},#{publish},#{ISBN},#{introduction},#{language},#{price},#{pubDate},#{type},#{number},#{total},#{createTime})")
     public int saveBookInfo(BookInfo bookInfo);
@@ -45,4 +48,12 @@ public interface BookInfoDAO {
 
     @Select("select name from book_info where book_id=#{id}")
     public String findBookNameById(@Param("id")Long id);
+
+    @Select("select * from book_info where number>0 and name like #{key}")
+    @ResultMap("bookInfo")
+    List<BookInfo> findAllByBookNameAndNumber(String key);
+
+    @Select("select * from book_info where number>0 order by create_time desc")
+    @ResultMap("bookInfo")
+    List<BookInfo> findAllByNumber();
 }

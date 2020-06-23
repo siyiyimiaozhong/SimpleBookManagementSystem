@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -169,5 +170,15 @@ public class BorrowServiceImpl implements BorrowService {
         }
         PageInfo pageInfo = new PageInfo(borrows);
         return new PageResult<Borrow>((int)pageInfo.getTotal(),pageInfo.getPages(),borrows);
+    }
+
+    @Override
+    public int saveBorrow(Long id, Long readerId) {
+        Borrow borrow = new Borrow();
+        borrow.setBookName(id.toString());
+        borrow.setReaderName(readerId.toString());
+        borrow.setLendDate(new Date());
+        borrow.setBorrowId(UUID.randomUUID().toString());
+        return borrowDAO.saveBorrow(borrow);
     }
 }

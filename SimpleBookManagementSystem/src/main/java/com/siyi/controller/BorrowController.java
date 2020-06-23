@@ -2,6 +2,8 @@ package com.siyi.controller;
 
 import com.siyi.domain.BookInfo;
 import com.siyi.domain.Borrow;
+import com.siyi.domain.ReaderInfo;
+import com.siyi.service.BookInfoService;
 import com.siyi.service.BorrowService;
 import com.siyi.vo.PageResult;
 import com.siyi.vo.Result;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,6 +24,8 @@ public class BorrowController {
 
     @Autowired
     private BorrowService borrowService;
+    @Autowired
+    private BookInfoService bookInfoService;
 
     @RequestMapping("overdue")
     public ResponseEntity<List<Borrow>> overdue(
@@ -89,4 +94,37 @@ public class BorrowController {
         return ResponseEntity.ok(result);
     }
 
+    @RequestMapping("borrow")
+    @ResponseBody
+    public Result borrow(@RequestParam("id") Long id, HttpSession session){
+        Result result = new Result();
+        ReaderInfo reader = (ReaderInfo)session.getAttribute("user");
+        int i = borrowService.saveBorrow(id,reader.getReaderId());
+        i += bookInfoService.borrow(id);
+        if(i==2){
+            result.setSuccess(true);
+        }else{
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    @RequestMapping("borrowBooks")
+    @ResponseBody
+    public Result borrowBooks(@RequestParam("ids") String ids, HttpSession session){
+        Result result = new Result();
+        ReaderInfo reader = (ReaderInfo)session.getAttribute("user");
+        String[] idArray = ids.split(",");
+        for(String id:idArray){
+            int i = borrowService.saveBorrow(Long.parseLong(id),reader.getReaderId());
+            i += bookInfoService.borrow(Long.parseLong(id));
+            if(i==2){
+                result.setSuccess(true);
+            }else{
+                result.setSuccess(false);
+                return result;
+            }
+        }
+        return result;
+    }
 }

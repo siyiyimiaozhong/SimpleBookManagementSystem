@@ -2,6 +2,7 @@ package com.siyi.controller;
 
 import com.siyi.domain.BookInfo;
 import com.siyi.domain.BookType;
+import com.siyi.domain.ReaderInfo;
 import com.siyi.service.BookInfoService;
 import com.siyi.service.BookTypeService;
 import com.siyi.vo.PageResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,19 @@ public class BookController {
             @RequestParam(value = "rows",defaultValue = "10") Integer rows
     ){
         PageResult<BookInfo> result = bookInfoService.findAll(key,page,rows);
+        if(result == null || CollectionUtils.isEmpty(result.getItems())){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(result);
+    }
+
+    @RequestMapping("pageByNumber")
+    public ResponseEntity<PageResult<BookInfo>> pageByNumber(
+            @RequestParam(value = "key",required = false) String key,
+            @RequestParam(value = "page",defaultValue = "1") Integer page,
+            @RequestParam(value = "rows",defaultValue = "10") Integer rows
+    ){
+        PageResult<BookInfo> result = bookInfoService.findAllByNumber(key,page,rows);
         if(result == null || CollectionUtils.isEmpty(result.getItems())){
             return ResponseEntity.notFound().build();
         }

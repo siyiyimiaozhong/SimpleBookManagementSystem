@@ -27,7 +27,8 @@ public interface BorrowDAO {
     public List<Borrow> findNotReturnByReaderId(@Param("readerId") Long readerId);
 
     @Insert("insert into borrow(borrow_id,book_id,reader_id,lend_date) " +
-            "value(#{borrowId},#{bookId},#{readerId},#{lendDate})")
+            "value(#{borrowId},#{bookName},#{readerName},#{lendDate})")
+    @ResultMap("borrow")
     public int saveBorrow(Borrow borrow);
 
     @Update("update borrow set back_date=#{backDate} where borrow_id=#{borrowId}")
