@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>未归还图书</title>
-    <meta name="description" content="未归还图书">
-    <meta name="keywords" content="未归还图书">
+    <title>我的借阅</title>
+    <meta name="description" content="我的借阅">
+    <meta name="keywords" content="我的借阅">
 
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
 
@@ -46,13 +45,11 @@
         <!-- 内容头部 -->
         <section class="content-header">
             <h1>
-                未归还图书
-                <small>借阅管理</small>
+                我的借阅
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">借阅管理</a></li>
-                <li class="active">未归还图书</li>
+                <li><a href="#">我的借阅</a></li>
             </ol>
         </section>
         <!-- 内容头部 /-->
@@ -80,10 +77,6 @@
                             </div>
                         </div>
                         <div class="box-tools pull-right">
-                            <select class="form-control" id="search-term">
-                                <option value="bookName">图书名</option>
-                                <option value="readerName">借阅人姓名</option>
-                            </select>
                             <div class="has-feedback">
                                 <input type="text" class="form-control input-sm" placeholder="搜索" id="search">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
@@ -100,16 +93,14 @@
                                 </th>
                                 <th class="text-center">借阅ID</th>
                                 <th class="text-center">图书名</th>
-                                <th class="text-center">借阅人姓名</th>
                                 <th class="text-center">借阅时间</th>
-                                <th class="text-center">已借阅天数</th>
+                                <th class="text-center">还书时间</th>
                                 <th class="text-center">操作</th>
                             </tr>
                             </thead>
                             <tbody id="list_body">
                             <tr>
                                 <td><input name="ids" type="checkbox"></td>
-                                <td class="text-center">开启</td>
                                 <td class="text-center">开启</td>
                                 <td class="text-center">开启</td>
                                 <td class="text-center">开启</td>
@@ -237,12 +228,12 @@
     $(document).ready(function() {
         // 激活导航位置
         setSidebarActive("notReturn");
-        // 列表按钮 
+        // 列表按钮
         $("#list_body td input[type='checkbox']").iCheck({
             checkboxClass: 'icheckbox_square-blue',
             increaseArea: '20%'
         });
-        // 全选操作 
+        // 全选操作
         $("#selall").click(function() {
             var clicks = $(this).is(':checked');
             if (!clicks) {
@@ -259,7 +250,8 @@
         if (event.keyCode == "13") {
             event.preventDefault();
             //回车执行查询
-            fun(1,10);
+            var key=$("#search").val();
+            fun(1,10,key);
         }
     });
 
@@ -268,10 +260,11 @@
         if(day>30){
             return "已逾期 "+Math.ceil(day-30)+" 天";
         }
-        return Math.floor(day)+"天";
+        return "已借阅 "+Math.floor(day)+" 天";
     }
 
     function returnBook(id) {
+        id=""+id;
         layer.confirm('你确定要还书吗?', {icon: 3, title:'提示'}, function(index){
             var loadingIndex =null;
             $.ajax({
@@ -288,7 +281,7 @@
                     if(result.success){
                         layer.msg("还书成功", {time:2000, icon:1, shift:1}, function(){
                         });
-                        window.location.href="adminNotReturn";
+                        window.location.href="readerMyBorrow";
                     }else{
                         layer.msg("还书失败，请重试", {time:2000, icon:2, shift:6}, function(){
                         });
@@ -321,7 +314,7 @@
                     if(result.success){
                         layer.msg("还书成功", {time:2000, icon:1, shift:1}, function(){
                         });
-                        window.location.href="adminNotReturn";
+                        window.location.href="readerMyBorrow";
                     }else{
                         layer.msg("还书失败，请重试", {time:2000, icon:2, shift:6}, function(){
                         });
@@ -332,16 +325,13 @@
         });
     };
 
-    function fun(page,rows) {
-        var key = $("#search-term option:selected").val();
-        var value = $("#search").val();
+    function fun(page,rows,key) {
         var loadingIndex = null;
         $.ajax({
             type:"post",
-            url:"borrow/pageNotReturn",
+            url:"borrow/pageByMyBorrow",
             data:{
                 "key": key,
-                "value": value,
                 "page": page,
                 "rows": rows
             },
@@ -357,27 +347,27 @@
                     html+='<tr><td><input name="ids" type="checkbox" value="'+borrows[i].borrowId+'"></td>' +
                         '<td class="text-center">'+borrows[i].borrowId+'</td>' +
                         '<td class="text-center">'+borrows[i].bookName+'</td>' +
-                        '<td class="text-center">'+borrows[i].readerName+'</td>' +
                         '<td class="text-center">'+new Date(borrows[i].lendDate).toLocaleString()+'</td>' +
-                        '<td class="text-center">'+Days(borrows[i].lendDate)+'</td>' +
-                        '<td class="text-center"><button type="button" class="btn bg-olive btn-xs" onclick="returnBook('+borrows[i].borrowId+')">还书</button></td></tr>'
+                        '<td class="text-center">'+(borrows[i].backDate?new Date(borrows[i].backDate).toLocaleString():Days(borrows[i].lendDate))+'</td>' +
+                        '<td class="text-center"><button type="button" class="btn bg-olive btn-xs" onclick="returnBook(\''+borrows[i].borrowId+'\')">还书</button></td></tr>';
                 }
                 $("#list_body").html(html);
                 $("#pageTotal").html(result.totalPage);
                 $("#total").html(result.total);
+                var key=$("#search").val();
                 var totalPage=result.totalPage;
                 var s="";
-                s+='<li><a href="#" aria-label="Previous" onclick="fun('+1+','+rows+')">首页</a></li>';
-                s+='<li><a href="#" onclick="fun('+(page>1?page-1:1)+','+rows+')">上一页</a></li>';
+                s+='<li><a href="#" aria-label="Previous" onclick="fun('+1+','+rows+','+key+')">首页</a></li>';
+                s+='<li><a href="#" onclick="fun('+(page>1?page-1:1)+','+rows+','+key+')">上一页</a></li>';
                 var index=0;
                 if(page-2>0) index=page-2;
                 else index=1;
                 for(var i=0;i<5;i++){
-                    s+='<li><a href="#" onclick="fun('+(index+i)+','+rows+')">'+(i+index)+'</a></li>';
+                    s+='<li><a href="#" onclick="fun('+(index+i)+','+rows+','+key+')">'+(i+index)+'</a></li>';
                     if(index+i==totalPage) break;
                 }
-                s+='<li><a href="#" onclick="fun('+(page==totalPage?page:page+1)+','+rows+')">下一页</a></li>'
-                s+='<li><a href="#" aria-label="Next" onclick="fun('+totalPage+','+rows+')">尾页</a></li>'
+                s+='<li><a href="#" onclick="fun('+(page==totalPage?page:page+1)+','+rows+','+key+')">下一页</a></li>'
+                s+='<li><a href="#" aria-label="Next" onclick="fun('+totalPage+','+rows+','+key+')">尾页</a></li>'
                 $("#page").html(s);
             }
         })
@@ -387,7 +377,7 @@
         $.ajax({ url:"header", context: document.body, success: function(sView){
                 $("#header").append($(sView));
             }});
-        $.ajax({ url:'adminAside', context: document.body, success: function(sView)       {
+        $.ajax({ url:'readerAside', context: document.body, success: function(sView)       {
                 $("#aside").append($(sView));
             }});
 

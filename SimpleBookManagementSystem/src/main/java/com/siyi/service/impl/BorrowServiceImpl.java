@@ -181,4 +181,31 @@ public class BorrowServiceImpl implements BorrowService {
         borrow.setBorrowId(UUID.randomUUID().toString());
         return borrowDAO.saveBorrow(borrow);
     }
+
+    /**
+     * 查询当前用户的借阅记录
+     * @param readerId
+     * @param key
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public PageResult<Borrow> findAllByUserId(Long readerId, String key, Integer page, Integer rows) {
+        List<Borrow> borrows=null;
+        if(key==null || key.length()==0){
+            PageHelper.startPage(page,rows);
+            borrows = borrowDAO.findAllByReaderId(readerId);
+        }else{
+            key="%"+key+"%";
+            List<BookInfo> books = bookInfoDAO.findAllByBookName(key);
+            List<Long> ids = books.stream().map(bookInfo -> {
+                return bookInfo.getBookId();
+            }).collect(Collectors.toList());
+            PageHelper.startPage(page,rows);
+            borrows = borrowDAO.findAllByReaderAndKey(readerId,ids);
+        }
+        PageInfo pageInfo = new PageInfo(borrows);
+        return new PageResult<Borrow>((int)pageInfo.getTotal(),pageInfo.getPages(),borrows);
+    }
 }

@@ -79,4 +79,9 @@ public class DispatcherController {
     public String reader_main(){
         return "reader_search_book.html";
     }
+
+    @RequestMapping("readerMyBorrow")
+    public String readerMyBorrow(){
+        return "reader_my_borrow.html";
+    }
 }

@@ -7,6 +7,7 @@ import com.siyi.service.BookInfoService;
 import com.siyi.service.BorrowService;
 import com.siyi.vo.PageResult;
 import com.siyi.vo.Result;
+import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,6 @@ public class BorrowController {
             @RequestParam(value = "key",required = false) String key,
             @RequestParam(value = "value",required = false) String value
     ){
-        System.out.println(key+"        ----------     "+ value);
         List<Borrow> borrows = borrowService.findAllByOverdue(key,value);
         if(borrows==null || borrows.size()==0){
             return ResponseEntity.notFound().build();
@@ -126,5 +126,23 @@ public class BorrowController {
             }
         }
         return result;
+    }
+
+    @RequestMapping("pageByMyBorrow")
+    public ResponseEntity<PageResult<Borrow>> pageByMyBorrow(
+            @RequestParam(value = "page",defaultValue = "1") Integer page,
+            @RequestParam(value = "rows",defaultValue = "10") Integer rows,
+            @RequestParam(value = "key",required = false) String key,
+            HttpSession session
+    ){
+        ReaderInfo reader = (ReaderInfo) session.getAttribute("user");
+        PageResult<Borrow> result = borrowService.findAllByUserId(reader.getReaderId(),key,page,rows);
+        System.out.println(result);
+        System.out.println(result.getItems());
+        System.out.println(result.getItems().get(0));
+        if(result == null || CollectionUtils.isEmpty(result.getItems())){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(result);
     }
 }

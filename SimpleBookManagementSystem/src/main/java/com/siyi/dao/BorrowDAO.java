@@ -52,5 +52,19 @@ public interface BorrowDAO {
             + " order by lend_date desc"
             + "</script>")
     @ResultMap("borrow")
-    List<Borrow> findAllByKeyAndValue(String key, List<Long> ids);
+    List<Borrow> findAllByKeyAndValue(String key,@Param("ids") List<Long> ids);
+
+    @Select("select * from borrow where reader_id=#{id} order by lend_date desc")
+    @ResultMap("borrow")
+    List<Borrow> findAllByReaderId(@Param("id") Long id);
+
+    @Select("<script>"
+            + "select * from `borrow` where reader_id=#{id} book_id in "
+            + "<foreach item='item' index='index' collection='ids' open='(' separator=',' close=')'>"
+            + "#{item}"
+            + "</foreach>"
+            + " order by lend_date desc"
+            + "</script>")
+    @ResultMap("borrow")
+    List<Borrow> findAllByReaderAndKey(@Param("id") Long id,@Param("ids") List<Long> ids);
 }

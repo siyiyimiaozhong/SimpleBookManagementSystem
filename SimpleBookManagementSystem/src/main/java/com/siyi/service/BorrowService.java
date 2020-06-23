@@ -17,4 +17,6 @@ public interface BorrowService {
     PageResult<Borrow> findAll(String key, String value, Integer page, Integer rows);
 
     int saveBorrow(Long id, Long readerId);
+
+    PageResult<Borrow> findAllByUserId(Long readerId, String key, Integer page, Integer rows);
 }
